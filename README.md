@@ -4,7 +4,7 @@
 # initial setup
 git clone
 rake db:create db:migrate
-brew services start rabbitm
+brew services start rabbitmq
 
 # start some workers
 rake data:start_worker &
