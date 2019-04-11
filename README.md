@@ -1,24 +1,26 @@
-# README
+### Rails RabbitMQ Work Queue Data Generator Splitter Importer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+# initial setup
+git clone
+rake db:create db:migrate
+brew services start rabbitm
 
-Things you may want to cover:
+# start some workers
+rake data:start_worker &
+rake data:start_worker &
+rake data:start_worker &
+rake data:start_worker &
 
-* Ruby version
+# generate model CSV data
+rake "data:generate[person, 1000000]"
 
-* System dependencies
+# split CSV data
+rake data:split_input_files
 
-* Configuration
+# import CSV files
+rake data:import_files
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# monitor
+http://localhost:15672/#/queues/%2F/task_queue
+```
